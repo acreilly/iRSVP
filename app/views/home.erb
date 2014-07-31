@@ -1,0 +1,39 @@
+<div class="section group">
+  <div class="col span_1_of_12"></div>
+  <div class="container col span_5_of_12">
+    <fieldset>
+      <legend>Hello, <%= @target_user.first_name.capitalize %>!</legend>
+      <h2>Your Events</h2>
+      <% @users_events.each do |event| %>
+      <div class="event">
+        <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
+        <ul>
+          <li><strong>Start: </strong><%= event.event_start %></li>
+        </ul>
+      </div>
+      <% end %>
+    </fieldset>
+  </div>
+
+  <div class="container  col span_5_of_12">
+    <fieldset>
+      <legend>Friend's Events</legend>
+      <% require 'debugger'; debugger %>
+      <% @user_following.each do |following| %>
+      <% @events.where(user_id: following.id).each do |event| %>
+      <div class="event">
+        <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
+        <ul>
+          <li><strong>Start: </strong><%= event.event_start %></li>
+          <li><strong>Hosted by: </strong><%= User.find(event.user_id).username %></li>
+          <li class="event_location"><strong>Location: </strong><%= event.location %></li>
+          <li><%= Event.find(event.id).attendees.count %> users attending</li>
+        </ul>
+      </div>
+      <% end %>
+      <% end %>
+    </fieldset>
+  </div>
+  <div class="col span_1_of_12"></div>
+
+</div>

@@ -1,0 +1,18 @@
+<div class="container col span_5_of_12">
+  <fieldset><legend>Login</legend>
+    <% if flash[:error_log] %>
+    <ul>
+      <li style="color: #FF4500; list-style: square;"><%= flash[:error_log] %></li+>
+    </ul>
+    <% end %>
+<form action="/sessions" method="post">
+  <label for="username">Username: </label>
+  <input type="text" name="username" required>
+  <br>
+  <label for="password">Password: </label>
+  <input type="password" name="password" required>
+  <br>
+  <input type="submit" value="Login">
+</form>
+</fieldset>
+</div>

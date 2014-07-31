@@ -1,0 +1,14 @@
+<div class="section group">
+  <div class="col span_3_of_12"></div>
+  <div class="container col span_6_of_12">
+    <fieldset>
+      <legend>iRSVP Users</legend>
+    <ul>
+      <% @users.each do |user| %>
+      <li style="padding:4px 0 4px 0;"><a href="/profile/<%= user.id %>"><%= user.username %></a></li>
+      <% end %>
+    </ul>
+    </fieldset>
+  </div>
+  <div class="col span_3_of_12"></div>
+</div>

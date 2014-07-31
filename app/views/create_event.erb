@@ -1,0 +1,31 @@
+<div class="section group">
+  <div class="col span_3_of_12"></div>
+  <div class="container col span_6_of_12">
+    <fieldset>
+      <legend>Create an Event</legend>
+      <form action="/events" method="post">
+        <label for="title">Title:</label>
+        <input type="text" name="title" required>
+        <br>
+        <label for="event_start">Start:</label>
+        <input type="datetime-local" name="event_start" required>
+        <br>
+        <label for="event_finish">End:</label>
+        <input type="datetime-local" name="event_finish">
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" name="location" class="location">
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+        <div id="map-canvas"></div>
+        <input type="hidden" name="latitude" class="latitude">
+        <input type="hidden" name="longitude" class="longitude">
+        <br>
+        <label for="description">Description:</label>
+        <textarea name="description" cols="30" rows="10"></textarea>
+        <input class="event_submit" type="submit" value="Submit">
+      </form>
+    </fieldset>
+  </div>
+  <div class="col span_3_of_12"></div>
+</div>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>

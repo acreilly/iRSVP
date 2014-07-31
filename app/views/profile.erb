@@ -1,0 +1,70 @@
+<div class="section group">
+<div class="col"></div>
+<div class="container user_info col span_5_of_12">
+  <fieldset>
+    <legend><%= @target_user.username %></legend>
+    <img style="float:left;" src=<%=gravatar_image%>>
+    <h1 style="float:left; margin-left:10px;"><%= @target_user.first_name.capitalize %> <%= @target_user.last_name.capitalize %></h1>
+    <br>
+    <% if current_user.id != @target_user.id %>
+    <form action="/following/<%= @target_user.id %>" method="post" style="clear:both;">
+      <input type="hidden" name="user_id" value="<%= @target_user.id %>">
+      <input type="hidden" name="current_user" value="<%= @current_user %>">
+      <input type="submit" value="Follow" id="follow_button">
+    </form>
+    <% end %>
+  </fieldset>
+  <fieldset>
+    <legend><%= @target_user.first_name.capitalize %>'s Events</legend>
+    <% @users_events.each do |event| %>
+    <div class="event">
+        <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
+      <ul>
+        <li><strong>Start: </strong><%= event.event_start %></li>
+        <li class="event_location"><strong>Location: </strong><%= event.location %></li>
+        <li><%= Event.find(event.id).attendees.count %> users attending</li>
+      </ul>
+    </div>
+    <% end %>
+  </fieldset>
+</div>
+
+<div class="container user_info col span_4_of_12">
+  <fieldset>
+    <legend>Attending</legend>
+    <% @attending_events.each do |event| %>
+    <div class="event">
+      <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
+      <ul>
+        <li class="event_time"><strong>Start: </strong><%= event.event_start %></li>
+        <li><strong>Hosted by: </strong><%= User.find(event.user_id).username %></li>
+        <li class="event_location"><strong>Location: </strong><%= event.location %></li>
+        <li><%= Event.find(event.id).attendees.count %> users attending</li>
+      </ul>
+    </div>
+    <% end %>
+  </fieldset>
+</div>
+<div class="container user_info col span_2_of_12">
+  <fieldset>
+    <legend>Following</legend>
+    <div class="follows">
+      <ul>
+    <% @user_following.each do |following| %>
+        <li><a href="/profile/<%= following.id %>"><%= following.username %></a></li>
+    <% end %>
+      </ul>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Followers</legend>
+    <div class="follows">
+      <ul id="follower">
+    <% @user_followers.each do |followers| %>
+        <li><a href="/profile/<%= followers.id %>"><%= followers.username %></a></li>
+    <% end %>
+      </ul>
+    </div>
+  </fieldset>
+</div>
+</div>
