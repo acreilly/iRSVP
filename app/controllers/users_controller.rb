@@ -49,7 +49,6 @@ get '/users/:user_id' do
   @users_events = Event.all.where(user_id: session[:user_id])
   @user_following = @target_user.followers
   @events = Event.all
-  @events_sorted = Event.all.sort_by &:event_start
   erb :home
 end
 
