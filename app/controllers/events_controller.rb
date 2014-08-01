@@ -29,6 +29,7 @@ get '/events/:event_id' do
   @user = User.all
   @current_users_friends = current_user.followings
   @event = Event.find(params[:event_id])
+  @host = User.find(@event.user_id)
 
   erb :single_event
 end
