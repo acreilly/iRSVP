@@ -6,12 +6,20 @@ end
 
 # --------------------CREATE EVENT
 post '/events' do
+  @event = Event.create(params)
+  if any_event_errors?
+flash[:error] = @current_error
+flash[:title] = params[:title]
+flash[:description] = params[:description]
+flash[:location] = params[:location]
+redirect '/events/new'
+else
   params[:event_start].to_datetime
   params[:event_finish].to_datetime
-  @event = Event.create(params)
   @event.user_id = session[:user_id]
   @event.save
   redirect "/events/#{@event.id}"
+end
 end
 
 # ----------------------------SHOW EVENT
