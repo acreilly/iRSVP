@@ -74,21 +74,3 @@ post '/followings' do
   current_user.followers << User.find(params[:user_id])
   return User.find(current_user.id).to_json
 end
-
-# # NOT PART OF MVP VV
-
-# get '/users/:id/edit' do
-#   # PAGE WITH EDIT SELF FORM
-# end
-
-# put '/users/:id' do
-#   #update user info
-# end
-
-# delete '/users/:id' do
-#   #delete your account with warning "you cannot undo this"
-# end
-
-# get '/map' do
-#   erb :map_test
-# end

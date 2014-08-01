@@ -37,7 +37,6 @@ describe 'GET /profiles/:user_id' do
   it "should display a users profile page" do
     User.create(first_name: "Yo", last_name: "Reilly", birthday: Date.new(1991, 03, 03), email: "blahzz@aol.com", username: "blah", password_hash: "blah")
      current_user = User.find_by_first_name("Allie")
-      # require 'pry'; binding.pry
     get "/profiles/#{current_user.id}"
     expect(last_response.status).to eq(200)
   end

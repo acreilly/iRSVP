@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   validate :user_age_validation
 
   def user_age_validation
-    # require 'pry'; binding.pry
     if birthday + 18.years > Date.today
       errors.add(:birthday, "under 18")
     end
