@@ -8,36 +8,38 @@
 
   <link rel="stylesheet" href="/css/application.css">
   <script src="/js/application.js"></script>
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-    </style>
-    <!-- <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtzn8Cy4XSIX8sTNz0dzcq251Q2AcwtGg">
-    </script> -->
+  <style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0 }
+  </style>
 
   <title>iRSVP</title>
 </head>
 <body>
   <header class="span_12_of_12">
     <h1><span>i</span>RSVP</h1>
-    <nav><ul>
-      <% if logged_in? %>
-      <li class="span_2_of_12"></li>
-      <li class="span_2_of_12"><a href="/users/<%= current_user.id %>">Home</a></li>
-      <li class="span_2_of_12"><a href="/events/new">Create Event</a></li>
-      <li class="span_2_of_12"><a href="/profile/<%= current_user.id %>">My Profile</a></li>
-      <li class="span_2_of_12"><a href="/users">Users</a></li>
-      <li class="span_2_of_12"></li>
-      <% end %>
-    </ul></nav>
+    <nav>
+      <ul>
+        <% if logged_in? %>
+        <li class="span_2_of_12"></li>
+        <li class="span_2_of_12"><a href="/users/<%= current_user.id %>">Home</a></li>
+        <li class="span_2_of_12"><a href="/events/new">Create Event</a></li>
+        <li class="span_2_of_12"><a href="/profiles/<%= current_user.id %>">My Profile</a></li>
+        <li class="span_2_of_12"><a href="/users">Users</a></li>
+        <li class="span_2_of_12"></li>
+        <% end %>
+      </ul>
+    </nav>
   </header>
+
   <%= yield %>
 
   <footer class="span_12_of_12">copyright 2014
     <% if logged_in? %>
-  <form action="/logout" method="post" class="logout">
-        <input class="logout" type="submit" value="Logout">
-      </form><% end %></footer>
+    <form action="/logout" method="post" class="logout">
+      <input class="logout" type="submit" value="Logout">
+    </form>
+    <% end %>
+  </footer>
 </body>
 </html>

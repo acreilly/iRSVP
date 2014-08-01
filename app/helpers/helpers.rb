@@ -5,11 +5,11 @@ helpers do
  end
 
  def logged_in?
-  current_user
+  !current_user.nil?
 end
 
 def logout
-  session[:user_id] = nil
+  session.clear
 end
 
 def current_error
@@ -24,24 +24,17 @@ def owners_event?
   Event.where(id: @event.id, user_id: current_user.id).any?
 end
 
-def in_past?(event, birthday)
-  if birthday.month < Time.now.month
-      year = Time.now.year + 1
-      birthday_update = "#{year}-#{birthday.month}-#{birthday.day}".to_datetime
-      event.update_attributes(event_start: birthday_update)
-    else
-      year = Time.now.year
-      birthday_update = "#{year}-#{birthday.month}-#{birthday.day}".to_datetime
-      p birthday
-      event.update_attributes(event_start: birthday_update)
-    end
-end
+def date_change(birthday)
 
-# def sort_by_date(dates, direction="ASC")
-#   sorted = dates.sort
-#   sorted.reverse! if direction == "DESC"
-#   sorted
-# end
+  if birthday.month < Time.now.month
+    year = Time.now.year + 1
+    "#{year}-#{birthday.month}-#{birthday.day}".to_datetime
+  else
+    year = Time.now.year
+    "#{year}-#{birthday.month}-#{birthday.day}".to_datetime
+  end
+
+end
 
 def gravatar_image
   email_address = @target_user.email.downcase

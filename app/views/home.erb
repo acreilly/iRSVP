@@ -15,10 +15,9 @@
     </fieldset>
   </div>
 
-  <div class="container  col span_5_of_12">
+  <div class="container col span_5_of_12">
     <fieldset>
       <legend>Friend's Events</legend>
-      <% require 'debugger'; debugger %>
       <% @user_following.each do |following| %>
       <% @events.where(user_id: following.id).each do |event| %>
       <div class="event">

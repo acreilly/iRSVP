@@ -13,9 +13,8 @@ gem 'activerecord', '~>4.1'
 gem 'rake'
 
 gem 'shotgun'
-
+gem 'pry'
 gem 'bcrypt'
-gem 'debugger'
 gem 'dotenv'
 gem 'sinatra-flash'
 
@@ -23,6 +22,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
   gem 'rspec'
+  gem 'database_cleaner', '~> 1.3.0'
   gem 'capybara'
 end
 

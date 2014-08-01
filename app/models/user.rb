@@ -1,7 +1,6 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  # has_many :events
 
   has_many :relationships
   has_many :followers, through: :relationships
@@ -14,11 +13,12 @@ class User < ActiveRecord::Base
 
 
   # validates :first_name, :last_name, :birthday, :email, :username, :password, presence: true
-  validates :email, :username, uniqueness: true
+  # validates :email, :username, uniqueness: true
   # validates :email, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, message: "only allow valid email addresses"}
   validate :user_age_validation
 
   def user_age_validation
+    # require 'pry'; binding.pry
     if birthday + 18.years > Date.today
       errors.add(:birthday, "under 18")
     end

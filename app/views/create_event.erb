@@ -5,13 +5,13 @@
       <legend>Create an Event</legend>
       <form action="/events" method="post">
         <label for="title">Title:</label>
-        <input type="text" name="title" required>
+        <input type="text" name="title" placeholder="Title" required>
         <br>
         <label for="event_start">Start:</label>
-        <input type="datetime-local" name="event_start" required>
+        <input type="datetime-local" name="event_start" placeholder="ex YYYY-MM-DD 00:00:00 UTC" required>
         <br>
         <label for="event_finish">End:</label>
-        <input type="datetime-local" name="event_finish">
+        <input type="datetime-local" name="event_finish" placeholder="ex YYYY-MM-DD 00:00:00 UTC">
         <br>
         <label for="location">Location:</label>
         <input type="text" name="location" class="location">

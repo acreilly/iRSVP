@@ -6,6 +6,8 @@ end
 
 # --------------------CREATE EVENT
 post '/events' do
+  params[:event_start].to_datetime
+  params[:event_finish].to_datetime
   @event = Event.create(params)
   @event.user_id = session[:user_id]
   @event.save
@@ -31,7 +33,14 @@ end
 # ----------------------------UPDATE EVENT
 put '/events/:event_id' do
   event = Event.find(params[:event_id])
-  event.update_attributes(title: params[:title], event_start: params[:event_start], event_finish: params[:event_finish], location: params[:location], latitude: params[:latitude], longitude: params[:longitude], description: params[:description])
+  event.update_attributes(
+    title: params[:title],
+    event_start: params[:event_start],
+    event_finish: params[:event_finish],
+    location: params[:location],
+    latitude: params[:latitude],
+    longitude: params[:longitude],
+    description: params[:description])
 
   redirect "/events/#{event.id}"
 end

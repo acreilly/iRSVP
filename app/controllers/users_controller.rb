@@ -5,6 +5,7 @@ end
 
 # --------------------CREATE USER
 post '/users' do
+  params[:birthday] = params[:birthday].to_date
   @user = User.create(params)
   if any_errors?
     flash[:error] = @current_error
@@ -14,15 +15,10 @@ post '/users' do
     flash[:username] = params[:username]
     redirect '/'
   else
-    User.create(params)
-
+    @user = User.create(params)
     user = User.find_by(username: params[:username])
     session[:user_id] = user.id
-
-    Event.create(title: "#{user.first_name}'s Birthday", event_start: params[:birthday], description: "Birthday!", user_id: user.id)
-    birthday_event = Event.find_by_event_start(params[:birthday])
-    event_start = birthday_event.event_start
-    in_past?(birthday_event, event_start)
+    Event.create(title: "#{user.first_name}'s Birthday", event_start: date_change(params[:birthday]), description: "Birthday!", user_id: user.id)
 
     redirect "/users/#{current_user.id}"
   end
@@ -49,10 +45,11 @@ get '/users/:user_id' do
   @users_events = Event.all.where(user_id: session[:user_id])
   @user_following = @target_user.followers
   @events = Event.all
+  @events_sorted = Event.all.sort_by &:event_start
   erb :home
 end
 
-get '/profile/:user_id' do
+get '/profiles/:user_id' do
   @target_user = User.find(params[:user_id])
   @users_events = Event.all.where(user_id: params[:user_id])
   @attending_events = @target_user.attended_events
@@ -78,20 +75,20 @@ post '/followings' do
   return User.find(current_user.id).to_json
 end
 
-# NOT PART OF MVP VV
+# # NOT PART OF MVP VV
 
-get '/users/:id/edit' do
-  # PAGE WITH EDIT SELF FORM
-end
+# get '/users/:id/edit' do
+#   # PAGE WITH EDIT SELF FORM
+# end
 
-put '/users/:id' do
-  #update user info
-end
+# put '/users/:id' do
+#   #update user info
+# end
 
-delete '/users/:id' do
-  #delete your account with warning "you cannot undo this"
-end
+# delete '/users/:id' do
+#   #delete your account with warning "you cannot undo this"
+# end
 
-get '/map' do
-  erb :map_test
-end
+# get '/map' do
+#   erb :map_test
+# end
