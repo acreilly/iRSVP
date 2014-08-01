@@ -31,8 +31,6 @@ describe 'GET /users/:user_id' do
   end
 end
 
-
-
 # describe 'GET /profiles/:user_id' do
 #   it "should display a users profile page" do
 #     User.destroy_all

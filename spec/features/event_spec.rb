@@ -29,11 +29,11 @@ end
 #   end
 # end
 
-# describe 'POST /events'
-# it "should create new event"
+describe 'POST /events'
+it "should create new event"
 
-# end
-
+end
+end
 # it "should not create new event"
 # end
 # end

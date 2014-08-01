@@ -45,10 +45,10 @@ get '/users/:user_id' do
   @users_events = Event.all.where(user_id: session[:user_id])
   @user_following = @target_user.followers
   @events = Event.all
-  @events_sorted = Event.all.sort_by &:event_start
   erb :home
 end
 
+# --------------------PROFILE PAGE
 get '/profiles/:user_id' do
   @target_user = User.find(params[:user_id])
   @users_events = Event.all.where(user_id: params[:user_id])
@@ -58,11 +58,13 @@ get '/profiles/:user_id' do
   erb :profile
 end
 
+# --------------------LOGOUT
 post '/logout' do
   logout
   redirect '/'
 end
 
+# --------------------ADDING ATTENDEES
 post '/attendees' do
   event = Event.find(params[:event_id])
   attendee_added = User.find_by_username(params[:username])
@@ -70,6 +72,7 @@ post '/attendees' do
   return attendee_added.to_json
 end
 
+# --------------------CREATING FOLLOWERS
 post '/followings' do
   current_user.followers << User.find(params[:user_id])
   return User.find(current_user.id).to_json
