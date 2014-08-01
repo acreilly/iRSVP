@@ -15,10 +15,10 @@
         <input type="text" name="title" placeholder="Title" value="<%= flash[:title] %>" required>
         <br>
         <label for="event_start">Start:</label>
-        <input type="datetime-local" name="event_start" placeholder="ex YYYY-MM-DD 00:00:00 UTC" required>
+        <input type="datetime-local" name="event_start" placeholder="ex YYYY-MM-DD 00:00:00 UTC" value="<%= flash[:event_start] %>" required>
         <br>
         <label for="event_finish">End:</label>
-        <input type="datetime-local" name="event_finish" placeholder="ex YYYY-MM-DD 00:00:00 UTC">
+        <input type="datetime-local" name="event_finish" value="<%= flash[:event_finish] %>" placeholder="ex YYYY-MM-DD 00:00:00 UTC">
         <br>
         <label for="location">Location:</label>
         <input type="text" name="location" value="<%= flash[:location] %>" class="location">
