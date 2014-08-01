@@ -50,4 +50,9 @@ def gravatar_image
   image_src = "http://www.gravatar.com/avatar/#{hash}"
 end
 
+if production?
+  after do
+    ActiveRecord::Base.connection.close
+  end
+end
 end
