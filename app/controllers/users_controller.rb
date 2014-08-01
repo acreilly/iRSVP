@@ -15,7 +15,7 @@ post '/users' do
     flash[:username] = params[:username]
     redirect '/'
   else
-    @user = User.create(params)
+    # User.create(params)
     user = User.find_by(username: params[:username])
     session[:user_id] = user.id
     Event.create(title: "#{user.first_name}'s Birthday", event_start: date_change(params[:birthday]), description: "Birthday!", user_id: user.id)

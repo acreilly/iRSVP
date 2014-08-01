@@ -17,12 +17,14 @@ gem 'pry'
 gem 'bcrypt'
 gem 'dotenv'
 gem 'sinatra-flash'
+  gem 'database_cleaner', '~> 1.3.0'
+
 
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
   gem 'rspec'
-  gem 'database_cleaner', '~> 1.3.0'
+  # gem 'database_cleaner', '~> 1.3.0'
   gem 'capybara'
 end
 
