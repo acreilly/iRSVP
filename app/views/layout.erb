@@ -22,9 +22,9 @@
       <ul>
         <% if logged_in? %>
         <li class="span_2_of_12"></li>
-        <li class="span_2_of_12"><a href="/users/<%= current_user.id %>">Home</a></li>
+        <li class="span_2_of_12"><a href="/users/<%= current_user.username %>">Home</a></li>
         <li class="span_2_of_12"><a href="/events/new">Create Event</a></li>
-        <li class="span_2_of_12"><a href="/profiles/<%= current_user.id %>">My Profile</a></li>
+        <li class="span_2_of_12"><a href="/profiles/<%= current_user.username %>">My Profile</a></li>
         <li class="span_2_of_12"><a href="/users">Users</a></li>
         <li class="span_2_of_12"></li>
         <% end %>

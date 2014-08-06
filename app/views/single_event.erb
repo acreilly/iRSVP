@@ -12,7 +12,7 @@
       </form>
       <% end %>
       <ul>
-        <li><strong>Hosted By: </strong><a href="/profiles/<%= @host.id %>"><%= @host.username %></a></li>
+        <li><strong>Hosted By: </strong><a href="/profiles/<%= @host.username %>"><%= @host.username %></a></li>
         <li><strong>Start: </strong><%= @event.event_start %></le>
           <li><strong>Finish: </strong><%= @event.event_finish %></li>
           <li class="event_location"><strong>Where: </strong><%= @event.location %></li>

@@ -20,7 +20,7 @@ post '/users' do
     session[:user_id] = user.id
     Event.create(title: "#{user.first_name}'s Birthday", event_start: date_change(params[:birthday]), description: "Birthday!", user_id: user.id)
 
-    redirect "/users/#{current_user.id}"
+    redirect "/users/#{current_user.username}"
   end
 end
 
@@ -32,7 +32,7 @@ post '/sessions' do
   end
 
   if logged_in?
-    redirect "/users/#{current_user.id}"
+    redirect "/users/#{current_user.username}"
   else
    flash[:error_log] = "Your username or password is incorrect!"
    redirect '/'
@@ -40,8 +40,8 @@ post '/sessions' do
 end
 
 # --------------------USERS MAIN PAGE
-get '/users/:user_id' do
-  @target_user = User.find(params[:user_id])
+get '/users/:username' do
+  @target_user = User.find_by(username: params[:username])
   @users_events = Event.all.where(user_id: session[:user_id])
   @user_following = @target_user.followers
   @events = Event.all
@@ -49,9 +49,9 @@ get '/users/:user_id' do
 end
 
 # --------------------PROFILE PAGE
-get '/profiles/:user_id' do
-  @target_user = User.find(params[:user_id])
-  @users_events = Event.all.where(user_id: params[:user_id])
+get '/profiles/:username' do
+  @target_user = User.find_by(username: params[:username])
+  @users_events = Event.all.where(user_id: @target_user.id)
   @attending_events = @target_user.attended_events
   @user_following = @target_user.followers
   @user_followers = @target_user.followings

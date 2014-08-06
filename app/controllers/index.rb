@@ -1,6 +1,6 @@
 get '/' do #MAIN PAGE
   if logged_in?
-    redirect "/users/#{current_user.id}"
+    redirect "/users/#{current_user.username}"
   else
     erb :index
   end

@@ -40,7 +40,7 @@
         <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
         <ul>
           <li class="event_time"><strong>Start: </strong><%= event.event_start %></li>
-          <li><strong>Hosted by: </strong><a href="<%= User.find(event.user_id).id %>"><%= User.find(event.user_id).username %></a></li>
+          <li><strong>Hosted by: </strong><a href="<%= User.find(event.user_id).username %>"><%= User.find(event.user_id).username %></a></li>
           <li class="event_location"><strong>Location: </strong><%= event.location %></li>
           <li><%= Event.find(event.id).attendees.count %> users attending</li>
         </ul>
@@ -56,7 +56,7 @@
       <div class="follows">
         <ul>
           <% @user_following.each do |following| %>
-          <li><a href="/profiles/<%= following.id %>"><%= following.username %></a></li>
+          <li><a href="/profiles/<%= following.username %>"><%= following.username %></a></li>
           <% end %>
         </ul>
       </div>
@@ -66,7 +66,7 @@
       <div class="follows">
         <ul id="follower">
           <% @user_followers.each do |followers| %>
-          <li><a href="/profiles/<%= followers.id %>"><%= followers.username %></a></li>
+          <li><a href="/profiles/<%= followers.username %>"><%= followers.username %></a></li>
           <% end %>
         </ul>
       </div>

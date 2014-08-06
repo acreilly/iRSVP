@@ -61,5 +61,5 @@ end
 delete '/events/:event_id' do
   Event.find(params[:event_id]).destroy
 
-  redirect "/users/#{current_user.id}"
+  redirect "/users/#{current_user.username}"
 end
