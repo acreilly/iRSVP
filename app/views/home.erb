@@ -26,7 +26,7 @@
           <li><strong>Start: </strong><%= event.event_start %></li>
           <li><strong>Hosted by: </strong><a href="/profiles/<%= User.find(event.user_id).username %>"><%= User.find(event.user_id).username %></a></li>
           <li class="event_location"><strong>Location: </strong><%= event.location %></li>
-          <li><%= Event.find(event.id).attendees.count %> users attending</li>
+          <li><%= event.attendees.count %> users attending</li>
         </ul>
       </div>
       <% end %>

@@ -46,11 +46,7 @@ end
 
 # --------------------PROFILE PAGE
 get '/profiles/:username' do
-  @target_user = User.find_by(username: params[:username])
-  @users_events = Event.all.where(user_id: @target_user.id)
-  @attending_events = @target_user.attended_events
-  @user_following = @target_user.followers
-  @user_followers = @target_user.followings
+  @user = User.find_by(username: params[:username])
   erb :profile
 end
 
@@ -63,13 +59,12 @@ end
 # --------------------ADDING ATTENDEES
 post '/attendees' do
   event = Event.find(params[:event_id])
-  attendee_added = User.find_by_username(params[:username])
-  event.attendees << attendee_added
-  return attendee_added.to_json
+  event.attendees << User.find_by_username(params[:username])
+  User.find_by_username(params[:username]).to_json
 end
 
 # --------------------CREATING FOLLOWERS
 post '/followings' do
   current_user.followers << User.find(params[:user_id])
-  return User.find(current_user.id).to_json
+  current_user.to_json
 end
