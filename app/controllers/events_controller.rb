@@ -26,7 +26,6 @@ end
 
 # ----------------------------SHOW EVENT
 get '/events/:event_id' do
-  @user = User.all
   @current_users_friends = current_user.followings
   @event = Event.find(params[:event_id])
   @host = User.find(@event.user_id)
@@ -52,7 +51,6 @@ put '/events/:event_id' do
     latitude: params[:latitude],
     longitude: params[:longitude],
     description: params[:description])
-
   redirect "/events/#{event.id}"
 end
 

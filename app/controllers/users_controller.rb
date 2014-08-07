@@ -15,7 +15,6 @@ post '/users' do
     flash[:username] = params[:username]
     redirect '/'
   else
-    # User.create(params)
     user = User.find_by(username: params[:username])
     session[:user_id] = user.id
     Event.create(title: "#{user.first_name}'s Birthday", event_start: date_change(params[:birthday]), description: "Birthday!", user_id: user.id)
@@ -41,10 +40,7 @@ end
 
 # --------------------USERS MAIN PAGE
 get '/users/:username' do
-  @target_user = User.find_by(username: params[:username])
-  @users_events = Event.all.where(user_id: session[:user_id])
-  @user_following = @target_user.followers
-  @events = Event.all
+  @user = User.find_by(username: params[:username])
   erb :home
 end
 

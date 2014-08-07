@@ -2,9 +2,9 @@
   <div class="col span_1_of_12"></div>
   <div class="container col span_5_of_12">
     <fieldset>
-      <legend>Hello, <%= @target_user.first_name.capitalize %>!</legend>
+      <legend>Hello, <%= @user.first_name.capitalize %>!</legend>
       <h2>Your Events</h2>
-      <% @users_events.each do |event| %>
+      <% @user.events.each do |event| %>
       <div class="event">
         <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
         <ul>
@@ -18,8 +18,8 @@
   <div class="container col span_5_of_12">
     <fieldset>
       <legend>Friend's Events</legend>
-      <% @user_following.each do |following| %>
-      <% @events.where(user_id: following.id).each do |event| %>
+      <% @user.followers.each do |following| %>
+      <% following.events.each do |event| %>
       <div class="event">
         <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
         <ul>
