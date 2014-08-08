@@ -1,0 +1,18 @@
+
+  <div class="container col span_5_of_12">
+    <fieldset><legend>Login</legend>
+      <% if flash[:error_log] %>
+      <ul>
+        <li style="color: #FF4500; list-style: square;"><%= flash[:error_log] %></li+>
+        </ul>
+        <% end %>
+        <%= form_for @user, {action: "sessions"} do |f| %>
+        <%= f.label :username, "Username: " %>
+        <%= f.text_field :username %>
+        <br>
+        <%= f.label :password, "Password: " %>
+        <%= f.password_field :password %>
+        <%= f.submit "Login" %>
+        <% end %>
+      </fieldset>
+    </div>

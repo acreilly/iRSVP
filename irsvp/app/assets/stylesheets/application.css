@@ -1,0 +1,410 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f5f5f5;
+  color: #247D92;
+}
+
+header{
+  float: left;
+  height: 185px;
+  position: relative;
+  background-color: #247D92;
+  margin-bottom: 50px;
+}
+
+header h1{
+  color: #F9F9F9;
+  text-align: center;
+  font-size: 110px;
+  font-weight: 700;
+  text-shadow: 0px 2px 3px #555;
+  margin-left: 0;
+  margin-top: -10px;
+}
+
+h1 span{
+  font-size: 100px;
+}
+
+nav{
+width: 100%;
+height: 50px;
+position: absolute;
+bottom: 0;
+background: #5DC2C2;
+box-shadow: 0px 5px 10px #bdbdbd;
+overflow: hidden;
+}
+
+nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li{
+  text-decoration: none;
+  display: inline-block;
+}
+nav ul li a{
+  display: block;
+  font-weight: 400;
+  padding:14px 0;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+
+nav a:hover{
+  background-color: #247D92;
+  color:white;
+}
+
+
+
+fieldset{
+  border: 1px solid #5DC2C2;
+  border-radius: 5px;
+  background-color: #F9F9F9;
+}
+
+fieldset legend{
+  font-size: 24px;
+}
+
+.container{
+  width: 60%;
+  margin: auto;
+}
+.index_button{
+ border-radius: 5px;
+  border: 1px solid #247D92;
+  width: 130px;
+  height: 75px;
+  text-align: center;
+  font-size: 25px;
+  background-color: #5DC2C2;
+  color: #E7F6F6;
+  transition: all 0.5s;
+}
+
+.index_button:hover{
+  background-color: #247D92;
+  border: 1px solid #5DC2C2;
+}
+
+a:hover, .container a:hover, .link_input:hover{
+  transition: all 0.5s;
+  color: #247D92;
+}
+
+
+.link_input{
+background-color: transparent;
+text-decoration: underline;
+border: none;
+cursor: pointer;
+}
+
+.edits{
+  display: inline;
+  float: right;
+}
+
+form{
+  margin: 10px;
+}
+
+.container label{
+  text-align: right;
+  float: left;
+  margin: 0 20px 0 0;
+  width: 110px;
+  font-weight: 400;
+}
+
+.container textarea{
+  float: left;
+}
+
+.container input{
+  /*margin: 20px 0;*/
+}
+
+.container a{
+  color: #5DC2C2;
+  text-decoration: none;
+  border-bottom: 1px solid #5DC2C2;
+}
+
+.event{
+  width: 95%;
+  padding: 10px;
+  border-top: 1px dashed white;
+  border-bottom: 1px dashed white;
+}
+
+.event ul{
+  list-style: none;
+  clear: both;
+  padding-left: 20px;
+  margin-top: 2px;
+}
+
+.follows ul{
+  list-style: none;
+  clear: both;
+  padding-left: 0;
+}
+
+.follows li{
+margin:5px 0 5px 0;
+}
+.event_title{
+  font-size: 22px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+.event_time{
+  font-size: 14px;
+}
+
+.index{
+  width: 40%;
+}
+
+.left_col{
+  float: left;
+  margin-left: 100px;
+}
+.right_col{
+  float: right;
+  margin-right: 100px;
+}
+.home{
+  width: 40%;
+}
+
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.event_submit{
+  clear: both;
+  float: left;
+  margin-left: 390px;
+}
+
+footer{
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  display: inline-block;
+  margin: 70px 0 10px 0;
+}
+footer form{
+  margin: 0;
+}
+
+footer .logout{
+  font-size: 14px;
+  float: right;
+  margin-right:20px;
+  margin-left: -20px;
+}
+
+.section {
+  clear: both;
+  padding: 0px;
+  margin: 0px;
+}
+
+/*  GROUPING  ============================================================================= */
+
+
+.group:before,
+.group:after {
+    content:"";
+    display:table;
+}
+.group:after {
+    clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+/*  GRID COLUMN SETUP   ==================================================================== */
+
+.col {
+  display: block;
+  float:left;
+  margin: 1% 0 1% 1.6%;
+}
+
+.col:first-child { margin-left: 0; } /* all browsers except IE6 and lower */
+
+
+/*  REMOVE MARGINS AS ALL GO FULL WIDTH AT 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .col {
+    margin: 1% 0 1% 0%;
+  }
+}
+/*  GRID OF TWELVE   ============================================================================= */
+
+.span_12_of_12 {
+  width: 100%;
+}
+
+.span_11_of_12 {
+  width: 91.53%;
+}
+
+.span_10_of_12 {
+  width: 83.06%;
+}
+
+.span_9_of_12 {
+  width: 74.6%;
+}
+
+.span_8_of_12 {
+  width: 66.13%;
+}
+
+.span_7_of_12 {
+  width: 57.66%;
+}
+
+.span_6_of_12 {
+  width: 49.2%;
+}
+
+.span_5_of_12 {
+  width: 40.73%;
+}
+
+.span_4_of_12 {
+  width: 32.26%;
+}
+
+.span_3_of_12 {
+  width: 23.8%;
+}
+
+.span_2_of_12 {
+  width: 15.33%;
+}
+
+.span_1_of_12 {
+  width: 6.86%;
+}
+
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span_12_of_12 {
+    width: 100%;
+  }
+  .span_11_of_12 {
+    width: 100%;
+  }
+  .span_10_of_12 {
+    width: 100%;
+  }
+  .span_9_of_12 {
+    width: 100%;
+  }
+  .span_8_of_12 {
+    width: 100%;
+  }
+  .span_7_of_12 {
+    width: 100%;
+  }
+  .span_6_of_12 {
+    width: 100%;
+  }
+  .span_5_of_12 {
+    width: 100%;
+  }
+  .span_4_of_12 {
+    width: 100%;
+  }
+  .span_3_of_12 {
+    width: 100%;
+  }
+  .span_2_of_12 {
+    width: 100%;
+  }
+  .span_1_of_12 {
+    width: 100%;
+  }
+}
+
+
+html, body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+
+      #map-canvas{
+        height:300px;
+        width: 500px;
+        margin: 0 auto;
+      }
+
+       .controls {
+        margin-top: 16px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #pac-input {
+        background-color: #fff;
+        padding: 0 11px 0 13px;
+        width: 400px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+        margin-left: -1px;
+        padding-left: 14px;  /* Regular padding-left + 1. */
+        width: 401px;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+
+ #target {
+        width: 345px;
+      }

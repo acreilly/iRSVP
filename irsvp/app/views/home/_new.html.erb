@@ -1,0 +1,34 @@
+<div class="container col span_5_of_12">
+  <fieldset><legend>Sign up</legend>
+
+    <% if flash[:error] %>
+    <% flash[:error].each do |v| %>
+    <ul>
+      <li style="color: orange; list-style: square;"><%= v %></li>
+    </ul>
+    <% end %>
+    <% end %>
+
+
+<%= form_for @user, {action: "create"} do |f| %>
+<%= f.label :first_name, "First name:" %>
+<%= f.text_field :first_name %>
+<br>
+<%= f.label :last_name, "Last name:" %>
+<%= f.text_field :last_name %>
+<br>
+<%= f.label :birthday, "Birthday:" %>
+<%= f.date_select :birthday %>
+<br>
+<%= f.label :email, "Email:" %>
+<%= f.text_field :email %>
+<br>
+<%= f.label :username, "Username:" %>
+<%= f.text_field :username %>
+<br>
+<%= f.label :password, "Password:" %>
+<%= f.password_field :password %>
+<%= f.submit "Sign up" %>
+<% end %>
+</fieldset>
+</div>

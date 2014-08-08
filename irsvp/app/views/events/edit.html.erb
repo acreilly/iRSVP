@@ -1,0 +1,48 @@
+<div class="container">
+  <fieldset>
+    <legend><%= @event.title.capitalize %></legend>
+    <div class="event">
+      <% if owners_event? %>
+      <form class="edits" action="/events/<%= @event.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input class="link_input" type="submit" value="Delete">
+      </form>
+      <form class="edits" action="/events/<%= @event.id %>/edit" method="get">
+        <input class="link_input float" type="submit" value="Edit">
+      </form>
+      <% end %>
+      <ul>
+        <li><strong>Hosted By: </strong><a href="/profiles/<%= @host.username %>"><%= @host.username %></a></li>
+        <li><strong>Start: </strong><%= @event.event_start %></le>
+          <li><strong>Finish: </strong><%= @event.event_finish %></li>
+          <li class="event_location"><strong>Where: </strong><%= @event.location %></li>
+          <div id="map-canvas"></div>
+          <input type="hidden" name="latitude" class="latitude" value="<%= @event.latitude %>">
+          <input type="hidden" name="longitude" class="longitude" value="<%= @event.longitude %>">
+          <li class="event_description"><strong>Description: </strong><%= @event.description %></li>
+          <li><strong>Attendees: </strong></li>
+          <ul class="attendee_ul">
+            <% @event.attendees.each do |attendee| %>
+            <li><%= attendee.username %></li>
+            <% end %>
+          </ul>
+          <% if owners_event? %>
+          <li><strong>Invite Users: </strong></li>
+          <form>
+            <select size="5" name="attendee_username" id="attendee_user">
+              <% current_user.followers.each do |user| %>
+              <option value="<%= user.username %>" name="attendee_username"><%= user.username %></option>
+              <% end %>
+            </select>
+            <input type="hidden" name="event_id" value="<%= @event.id %>">
+            <br>
+            <input type="submit" id="attendee_submit" value="Invite User">
+          </form>
+          <% end %>
+        </ul>
+      </div>
+    </fieldset>
+  </div>
+
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
