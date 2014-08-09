@@ -1,3 +1,75 @@
-<%= @user.username %>
-<%= @user.events %>
-<%= @user.followers %>
+<div class="section group">
+  <div class="col"></div>
+  <div class="container user_info col span_5_of_12">
+    <fieldset>
+      <legend><%= @user.username %></legend>
+      <img style="float:left;" src=<%=gravatar_image%>>
+      <h1 style="float:left; margin-left:10px;"><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+      <br>
+
+      <% if current_user.id != @user.id %>
+      <form action="/following/<%= @user.id %>" method="post" style="clear:both;">
+        <input type="hidden" name="user_id" value="<%= @user.id %>">
+        <input type="hidden" name="current_user" value="<%= @current_user %>">
+        <input type="submit" value="Follow" id="follow_button">
+      </form>
+      <% end %>
+    </fieldset>
+
+
+    <fieldset>
+      <legend><%= @user.first_name.capitalize %>'s Events</legend>
+      <% @user.events.each do |event| %>
+      <div class="event">
+        <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
+        <ul>
+          <li><strong>Start: </strong><%= event.event_start %></li>
+          <li class="event_location"><strong>Location: </strong><%= event.location %></li>
+          <li><%= Event.find(event.id).attendees.count %> users attending</li>
+        </ul>
+      </div>
+      <% end %>
+    </fieldset>
+  </div>
+
+  <div class="container user_info col span_4_of_12">
+    <fieldset>
+      <legend>Attending</legend>
+      <% @user.attended_events.each do |event| %>
+      <div class="event">
+        <a class="event_title" href="/events/<%= event.id %>"><%= event.title.capitalize %></a>
+        <ul>
+          <li class="event_time"><strong>Start: </strong><%= event.event_start %></li>
+          <li><strong>Hosted by: </strong><a href="<%= User.find(event.user_id).username %>"><%= User.find(event.user_id).username %></a></li>
+          <li class="event_location"><strong>Location: </strong><%= event.location %></li>
+          <li><%= Event.find(event.id).attendees.count %> users attending</li>
+        </ul>
+      </div>
+      <% end %>
+    </fieldset>
+  </div>
+
+
+  <div class="container user_info col span_2_of_12">
+    <fieldset>
+      <legend>Following</legend>
+      <div class="follows">
+        <ul>
+          <% @user.followers.each do |following| %>
+          <li><a href="/profiles/<%= following.username %>"><%= following.username %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Followers</legend>
+      <div class="follows">
+        <ul id="follower">
+          <% @user.followings.each do |followers| %>
+          <li><a href="/profiles/<%= followers.username %>"><%= followers.username %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    </fieldset>
+  </div>
+</div>

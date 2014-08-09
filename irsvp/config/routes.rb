@@ -1,8 +1,8 @@
 Irsvp::Application.routes.draw do
   resources :users, except: [:edit, :update]
-  get ':username', to: 'users#mainpage', as: :user
-  get 'profile/:username', to: 'users#profile', as: :user
-  post 'sessions', to: 'users#session', as: :user
+  get ':username', to: 'users#mainpage', as: "main"
+  get 'profile/:username', to: 'users#profile', as: "profile"
+  post 'sessions', to: 'users#sessions', as: "sessions"
   resources :events
   root to: "home#index"
   # The priority is based upon order of creation:
@@ -10,7 +10,7 @@ Irsvp::Application.routes.draw do
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  # feep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

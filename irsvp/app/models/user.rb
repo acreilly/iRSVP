@@ -1,7 +1,7 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :birthday, :email, :username, :password_hash
+  attr_accessible :first_name, :last_name, :birthday, :email, :username, :password
 
   has_many :relationships
   has_many :followers, through: :relationships
@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
 
   # validates :first_name, :last_name, :birthday, :email, :username, :password, presence: true
+  validates :username, presence: true #testing purposes
   # validates :email, :username, uniqueness: true
   # validates :email, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, message: "only allow valid email addresses"}
   validate :user_age_validation
@@ -33,5 +34,14 @@ class User < ActiveRecord::Base
   def password=(new_password)
     @password = Password.create(new_password)
     self.password_hash = @password
+  end
+  # before_filter :authenticate
+
+  # private
+  def authenticate(username, password)
+    authenticate_or_request_with_http_basic do |u, p|
+      u == username &&
+      Digest::SHA1.hexdigest(p) == password
+    end
   end
 end

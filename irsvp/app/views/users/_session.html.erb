@@ -6,7 +6,7 @@
         <li style="color: #FF4500; list-style: square;"><%= flash[:error_log] %></li+>
         </ul>
         <% end %>
-        <%= form_for @user, {action: "sessions"} do |f| %>
+        <%= form_for :session, url: sessions_path do |f| %>
         <%= f.label :username, "Username: " %>
         <%= f.text_field :username %>
         <br>

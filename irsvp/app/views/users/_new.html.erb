@@ -10,7 +10,7 @@
     <% end %>
 
 
-<%= form_for @user, {action: "create"} do |f| %>
+<%= form_for @user, url: {controller: "users", action: "create"} do |f| %>
 <%= f.label :first_name, "First name:" %>
 <%= f.text_field :first_name %>
 <br>
@@ -18,7 +18,7 @@
 <%= f.text_field :last_name %>
 <br>
 <%= f.label :birthday, "Birthday:" %>
-<%= f.date_select :birthday %>
+<%= f.date_select :birthday, start_year: 1920 %>
 <br>
 <%= f.label :email, "Email:" %>
 <%= f.text_field :email %>

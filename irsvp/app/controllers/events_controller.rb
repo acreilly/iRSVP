@@ -28,7 +28,7 @@ def show
 end
 
 def edit
-  @event = Event.find(params[:object_id])
+  @event = Event.find(params[:id])
 end
 
 def update

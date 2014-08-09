@@ -1,0 +1,39 @@
+<div class="section group">
+  <div class="col span_3_of_12"></div>
+  <div class="container col span_6_of_12">
+    <fieldset>
+      <% if flash[:error] %>
+      <% flash[:error].each do |v| %>
+      <ul>
+        <li style="color: orange; list-style: square;"><%= v %></li>
+      </ul>
+      <% end %>
+      <% end %>
+      <legend>Create an Event</legend>
+
+      <%= form_for @event do |f| %>
+      <%= f.label :title, "Title: " %>
+      <%= f.text_field :title %>
+      <br>
+      <%= f.label :event_start, "Start: " %>
+      <%= f.datetime_select :event_start, start_year: Time.now.year %>
+      <br>
+      <%= f.label :event_finish, "End: " %>
+      <%= f.datetime_select :event_finish, start_year: Time.now.year %>
+      <br>
+      <%= f.hidden_field :latitude %>
+      <%= f.hidden_field :longitude  %>
+      <%= f.label :location, "Location: " %>
+      <%= f.text_field :location %>
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+        <div id="map-canvas"></div>
+      <br>
+      <%= f.label :description, "Description: " %>
+      <%= f.text_area :description %>
+      <%= f.submit "Submit" %>
+      <% end %>
+
+    </fieldset>
+  </div>
+  <div class="col span_3_of_12"></div>
+</div>
