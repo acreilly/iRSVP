@@ -3,6 +3,7 @@ Irsvp::Application.routes.draw do
   get ':username', to: 'users#mainpage', as: "main"
   get 'profile/:username', to: 'users#profile', as: "profile"
   post 'sessions', to: 'users#sessions', as: "sessions"
+  post 'logout', to: 'users#logout', as: 'logout'
   resources :events
   root to: "home#index"
   # The priority is based upon order of creation:

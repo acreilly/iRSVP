@@ -51,8 +51,7 @@ def mainpage
   @user = User.where(username: params[:username]).first
 end
 
-def destroy
-logout
-redirect_to root_path
+def logout
+  logout
 end
 end

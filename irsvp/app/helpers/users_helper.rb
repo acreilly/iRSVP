@@ -9,7 +9,8 @@ module UsersHelper
   end
 
   def logout
-    session.clear
+    session[:user_id] = nil
+    redirect_to root_path
   end
 
   def authenticate(username, password)
@@ -36,9 +37,9 @@ module UsersHelper
     end
 
   end
-def gravatar_image
-  email_address = @user.email.downcase
-  hash = Digest::MD5.hexdigest(email_address)
-  image_src = "http://www.gravatar.com/avatar/#{hash}"
-end
+  def gravatar_image
+    email_address = @user.email.downcase
+    hash = Digest::MD5.hexdigest(email_address)
+    image_src = "http://www.gravatar.com/avatar/#{hash}"
+  end
 end
