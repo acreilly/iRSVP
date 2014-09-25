@@ -3,13 +3,8 @@
     <legend><%= @event.title.capitalize %></legend>
     <div class="event">
       <% if owners_event? %>
-      <form class="edits" action="/events/<%= @event.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input class="link_input" type="submit" value="Delete">
-      </form>
-      <form class="edits" action="/events/<%= @event.id %>/edit" method="get">
-        <input class="link_input float" type="submit" value="Edit">
-      </form>
+      <%= link_to "Edit", edit_event_path(@event), method: :get %>
+      <%= link_to "Delete", @event, :method=>:delete, :class=>:destroy %>
       <% end %>
       <ul>
         <li><strong>Hosted By: </strong><a href="/profiles/<%= @host.username %>"><%= @host.username %></a></li>
@@ -44,5 +39,4 @@
     </fieldset>
   </div>
 
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>

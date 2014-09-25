@@ -1,62 +1,14 @@
-$(document).ready(function() {
-  $("#attendee_submit").on("click", attendeeSubmit);
-  $("#follow_button").on("click", followSubmit);
-  if($("#map-canvas").length > 0){
-    initialize()
-    google.maps.event.addDomListener(window, 'load', initialize);
-  }
-  // create a new event for already set locations
-});
+function MapController(){}
 
-var attendeeSubmit = function(event){
-  event.preventDefault();
-  var selectedIndex = $("#attendee_user")[0].selectedIndex;
-  var value = $("option")[selectedIndex].value;
-  var event_id = $("input[name='event_id']")[0].value;
-  var ajaxRequest = $.ajax({
-    type: "POST",
-    url: "/attendees",
-    data: {event_id: event_id, username: value}
-  });
-  ajaxRequest.done(attendeeResponse);
-};
-
-function attendeeResponse(data){
-  var attendee = $.parseJSON(data);
-  var addedAttendee = attendee.username;
-  $(".attendee_ul").append("<li>"+ addedAttendee + "</li>");
-}
-
-
-var followSubmit = function(event){
-  event.preventDefault();
-  var user_id = $("input[name='user_id']")[0].value;
-  var ajaxRequest = $.ajax({
-    type: "POST",
-    url: "/followings",
-    data: {user_id: user_id}
-  });
-  ajaxRequest.done(followResponse);
-}
-
-function followResponse(data){
-  var follow = $.parseJSON(data);
-  $("#follower").append("<li><a href='/profiles/" + follow.id + "'>" + follow.username + "</a></li>");
-}
-
-
-
-
-
-
-function initialize() {
+MapController.prototype = {
+  initialize: function(){
+    if($("#map-canvas").length > 0){
 
   var markers = [];
-  debugger
-  var lat = parseFloat($("#event_latitude")[0].value);
-  var lon = parseFloat($("#event_longitude")[0].value);
+  var lat = parseFloat($(".latitude")[0].value);
+  var lon = parseFloat($(".longitude")[0].value);
 
-  if($("#event_latitude")[0].value === ""){
+  if($(".latitude")[0].value === ""){
     var map = new google.maps.Map(document.getElementById('map-canvas'), {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -81,7 +33,7 @@ function initialize() {
       map: map
     });
 
-    $("#pac-input").value = $("#event_location")[0].value;
+    $("#pac-input").value = $(".location")[0].value;
   }
 
 
@@ -126,7 +78,6 @@ function initialize() {
         position: place.geometry.location
       });
       markers.push(marker);
-
       $(".location")[0].value = place.formatted_address;
       $("#pac-input").value = $(".location")[0].value;
       $(".latitude")[0].value = place.geometry.location.k
@@ -145,4 +96,6 @@ function initialize() {
     var bounds = map.getBounds();
     searchBox.setBounds(bounds);
   });
+    }
+  }
 }

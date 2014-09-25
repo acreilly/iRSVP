@@ -21,10 +21,10 @@
       <%= f.label :event_finish, "End: " %>
       <%= f.datetime_select :event_finish, start_year: Time.now.year %>
       <br>
-      <%= f.hidden_field :latitude %>
-      <%= f.hidden_field :longitude  %>
+      <%= f.hidden_field :latitude, class: "latitude" %>
+      <%= f.hidden_field :longitude, class: "longitude"  %>
       <%= f.label :location, "Location: " %>
-      <%= f.text_field :location %>
+      <%= f.text_field :location, class: "location" %>
       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
         <div id="map-canvas"></div>
       <br>
@@ -37,3 +37,5 @@
   </div>
   <div class="col span_3_of_12"></div>
 </div>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
