@@ -5,9 +5,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # def new
-  #   @user = User.new
-  # end
+  def new
+    @user = User.new
+  end
 
   def create
     @user = User.new(params[:user])
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
       Event.create(title: "#{user.first_name}'s Birthday", event_start: date_change(user.birthday), description: "Birthday!", user_id: user.id)
 
-      redirect_to user_path(@user)
+      redirect_to main_path(@user)
     else
       flash[:error] = @current_error
       # flash[:first_name] = params[:first_name]
@@ -44,11 +44,11 @@ class UsersController < ApplicationController
  end
 
  def profile
-  @user = User.where(username: params[:username]).first
-end
+   @user = User.where(id: params[:username]).first
+ end
 
-def mainpage
-  @user = User.where(username: params[:username]).first
+ def mainpage
+  @user = User.where(id: params[:username]).first
 end
 
 def logout
